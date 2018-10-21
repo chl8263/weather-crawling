@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">weather-crawling</string>
+
+    <string name="msg_quit">종료하려면 한번더 눌러 주세요</string>
+</resources>
