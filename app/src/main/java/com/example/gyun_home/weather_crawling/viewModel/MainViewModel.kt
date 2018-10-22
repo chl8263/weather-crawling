@@ -5,6 +5,9 @@ import android.databinding.ObservableInt
 
 class MainViewModel {
 
+    var midtemp : ArrayList<String> = ArrayList()
+    var midtime : ArrayList<String> = ArrayList()
+
     var address : ObservableField<String> = ObservableField()
     var temperature : ObservableField<String> = ObservableField()
     var mainSub1 : ObservableField<String> = ObservableField()
@@ -27,8 +30,6 @@ class MainViewModel {
     var mid_time6 : ObservableField<String> = ObservableField()
     var mid_time7 : ObservableField<String> = ObservableField()
     var mid_time8 : ObservableField<String> = ObservableField()
-
-
 
 
 }
