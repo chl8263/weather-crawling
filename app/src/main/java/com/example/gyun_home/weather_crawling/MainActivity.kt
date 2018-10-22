@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.gyun_home.weather_crawling.databinding.MainBinding
+import com.example.gyun_home.weather_crawling.model.TextData
 import com.example.gyun_home.weather_crawling.viewModel.MainViewModel
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -40,18 +41,34 @@ class MainActivity : BaseActivity() {
         getData().execute()
     }
 
-    inner class getData : AsyncTask<Unit,Unit,String>(){
-        override fun doInBackground(vararg p0: Unit?): String {
+    inner class getData : AsyncTask<Unit,Unit,TextData>(){
+        override fun doInBackground(vararg p0: Unit?): TextData {
+            var textData = TextData()
             var a : String = ""
             var doc= Jsoup.connect("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%84%9C%EC%9A%B8+%EB%82%A0%EC%94%A8").get()
+
             var address = doc.select(".btn_select")
-            a += address.text()
-            return a
+            var temperature = doc.select(".todaytemp")
+            /*var temperaturemark =  doc.select(".tempmark")
+            textData.temperature += temperaturemark.text()*/
+            var mainsub1 = doc.select(".cast_txt").first()
+            var mainsub2_1 = doc.select(".merge")
+            var mainsub2_2 = doc.select(".sensible")
+
+            model!!.address.set(address.text())
+            model!!.temperature.set(temperature.text())
+            model!!.mainSub1.set(mainsub1.text())
+            model!!.mainSub2.set(mainsub2_1.text() + " | " + mainsub2_2.text())
+
+            return textData
         }
 
-        override fun onPostExecute(result: String?) {
+        override fun onPostExecute(result: TextData?) {
             super.onPostExecute(result)
-            temperature.text = result
+           /* address.text= result!!.address
+            temperature.text = result!!.temperature
+            mainSub1.text = result!!.mainSub1
+            mainSub2.text = result!!.mainSub2*/
         }
     }
 
