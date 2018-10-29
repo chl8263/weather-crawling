@@ -2,6 +2,8 @@ package com.example.gyun_home.weather_crawling.viewModel
 
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
+import android.util.Log
+import com.example.gyun_home.weather_crawling.R
 
 class MainViewModel {
 
@@ -31,5 +33,18 @@ class MainViewModel {
     var mid_time7 : ObservableField<String> = ObservableField()
     var mid_time8 : ObservableField<String> = ObservableField()
 
+    var mainImage : ObservableInt = ObservableInt()
+
+    fun mainWetherImgLogic (msg : String){
+        var splite  = msg.split(",")
+        var img = drawimage(splite[0])
+        mainImage.set(img)
+    }
+    fun drawimage(msg:String) : Int{
+        when(msg) {
+            "맑음" -> return R.drawable.ic_sun
+        }
+        return R.mipmap.ic_launcher
+    }
 
 }

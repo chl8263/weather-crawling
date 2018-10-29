@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
 
             var doc= Jsoup.connect("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%84%9C%EC%9A%B8+%EB%82%A0%EC%94%A8").get()
 
-            var address = doc.select(".btn_select")
+            var address = doc.select(".btn_select").first()
             var temperature = doc.select(".todaytemp").first()
             /*var temperaturemark =  doc.select(".tempmark")
             textData.temperature += temperaturemark.text()*/
@@ -78,6 +78,7 @@ class MainActivity : BaseActivity() {
             model!!.address.set(address.text())
             model!!.temperature.set(temperature.text())
             model!!.mainSub1.set(mainsub1.text())
+            model!!.mainWetherImgLogic(mainsub1.text())
             model!!.mainSub2.set(mainsub2_1.text() + " | " + mainsub2_2.text())
 
             model!!.mid_temp1.set(model!!.midtemp.get(0))
