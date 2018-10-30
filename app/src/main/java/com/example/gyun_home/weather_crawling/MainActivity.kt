@@ -38,10 +38,10 @@ class MainActivity : BaseActivity() {
         binding!!.model = model
 
         temperature.setText("aaa")
-        getData().execute()
+        model!!.getData().execute()
     }
 
-    inner class getData : AsyncTask<Unit,Unit,TextData>(){
+    /*inner class getData : AsyncTask<Unit,Unit,TextData>(){
         override fun doInBackground(vararg p0: Unit?): TextData {
             var textData = TextData()
 
@@ -113,11 +113,11 @@ class MainActivity : BaseActivity() {
 
         override fun onPostExecute(result: TextData?) {
             super.onPostExecute(result)
-            /*address.text= result!!.address
+            *//*address.text= result!!.address
             temperature.text = result!!.temperature
             mainSub1.text = result!!.mainSub1
-            mainSub2.text = result!!.mainSub2*/
+            mainSub2.text = result!!.mainSub2*//*
         }
-    }
+    }*/
 
 }

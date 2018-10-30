@@ -2,8 +2,11 @@ package com.example.gyun_home.weather_crawling.viewModel
 
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
+import android.os.AsyncTask
 import android.util.Log
 import com.example.gyun_home.weather_crawling.R
+import com.example.gyun_home.weather_crawling.model.TextData
+import org.jsoup.Jsoup
 import java.util.*
 
 class MainViewModel {
@@ -87,6 +90,86 @@ class MainViewModel {
         if(hour < 6)
             return R.drawable.ic_sun
         else return R.drawable.ic_moon
+    }
+
+
+    inner class getData : AsyncTask<Unit, Unit, TextData>(){
+        override fun doInBackground(vararg p0: Unit?): TextData {
+            var textData = TextData()
+
+            var doc= Jsoup.connect("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%84%9C%EC%9A%B8+%EB%82%A0%EC%94%A8").get()
+
+            var addressA = doc.select(".btn_select").first()
+            var temperatureA = doc.select(".todaytemp").first()
+            var temperaturemarkA =  doc.select(".tempmark").first()
+
+            textData.temperature += temperaturemarkA.text()
+            var mainsub1 = doc.select(".cast_txt").first()
+            var mainsub2_1 = doc.select(".merge")
+            var mainsub2_2 = doc.select(".sensible")
+
+
+            var mid_temp = doc.select(".weather_item")
+            var mid_time = doc.select(".item_time")
+            var mid_img = doc.select(".list_area").first().children()
+
+
+
+            for((i,value) in mid_temp.withIndex()){
+                if(i == 8){
+                    break
+                }
+                midtemp.add(value.text())
+            }
+            for((i,value) in mid_time.withIndex()){
+                if(i == 8){
+                    break
+                }
+                midtime.add(value.text())
+            }
+            for((i,value) in mid_img.withIndex()){
+                midimg.add(value.text())
+            }
+            subWetherImgLogic()
+
+            address.set(addressA.text())
+            temperature.set(temperatureA.text())
+            mainSub1.set(mainsub1.text())
+            mainWetherImgLogic(mainsub1.text())
+            mainSub2.set(mainsub2_1.text() + " | " + mainsub2_2.text())
+
+            mid_temp1.set(midtemp.get(0))
+            mid_temp2.set(midtemp.get(1))
+            mid_temp3.set(midtemp.get(2))
+            mid_temp4.set(midtemp.get(3))
+            mid_temp5.set(midtemp.get(4))
+            mid_temp6.set(midtemp.get(5))
+            mid_temp7.set(midtemp.get(6))
+            mid_temp8.set(midtemp.get(7))
+
+            mid_time1.set(midtime.get(0))
+            mid_time2.set(midtime.get(1))
+            mid_time3.set(midtime.get(2))
+            mid_time4.set(midtime.get(3))
+            mid_time5.set(midtime.get(4))
+            mid_time6.set(midtime.get(5))
+            mid_time7.set(midtime.get(6))
+            mid_time8.set(midtime.get(7))
+
+            midtemp.clear()
+            midtime.clear()
+            midimg.clear()
+
+            return textData
+        }
+
+        override fun onPostExecute(result: TextData?) {
+            super.onPostExecute(result)
+            /*address.text= result!!.address
+            temperature.text = result!!.temperature
+            mainSub1.text = result!!.mainSub1
+            mainSub2.text = result!!.mainSub2*/
+        }
     }
 
 
