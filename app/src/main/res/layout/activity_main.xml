@@ -262,7 +262,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mid_temp1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage1}"
+            />
 
         <ImageView
             android:id="@+id/mid_img8"
@@ -272,7 +274,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img7"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage8}"
+            />
 
         <ImageView
             android:id="@+id/mid_img7"
@@ -282,7 +286,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img6"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage7}"
+            />
 
         <ImageView
             android:id="@+id/mid_img6"
@@ -292,7 +298,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img5"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage6}"
+            />
 
         <ImageView
             android:id="@+id/mid_img5"
@@ -302,7 +310,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img4"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage5}"
+            />
 
         <ImageView
             android:id="@+id/mid_img4"
@@ -312,7 +322,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img3"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage4}"
+            />
 
         <ImageView
             android:id="@+id/mid_img3"
@@ -322,7 +334,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img2"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage3}"
+            />
 
         <ImageView
             android:id="@+id/mid_img2"
@@ -332,7 +346,9 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mid_img1"
             app:layout_constraintTop_toTopOf="@+id/mid_img1"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            setimage = "@{model.midImage2}"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

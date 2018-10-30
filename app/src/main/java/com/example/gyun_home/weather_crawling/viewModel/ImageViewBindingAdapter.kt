@@ -10,6 +10,4 @@ object ImageViewBindingAdapter {
     fun setImageView(view : ImageView , itemid : Int){
         view.setImageResource(itemid)
     }
-
-
 }

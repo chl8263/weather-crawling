@@ -49,8 +49,9 @@ class MainActivity : BaseActivity() {
 
             var address = doc.select(".btn_select").first()
             var temperature = doc.select(".todaytemp").first()
-            /*var temperaturemark =  doc.select(".tempmark")
-            textData.temperature += temperaturemark.text()*/
+            var temperaturemark =  doc.select(".tempmark").first()
+
+            textData.temperature += temperaturemark.text()
             var mainsub1 = doc.select(".cast_txt").first()
             var mainsub2_1 = doc.select(".merge")
             var mainsub2_2 = doc.select(".sensible")
@@ -58,6 +59,9 @@ class MainActivity : BaseActivity() {
 
             var mid_temp = doc.select(".weather_item")
             var mid_time = doc.select(".item_time")
+            var mid_img = doc.select(".list_area").first().children()
+
+
 
             for((i,value) in mid_temp.withIndex()){
                 if(i == 8){
@@ -71,9 +75,10 @@ class MainActivity : BaseActivity() {
                 }
                 model!!.midtime.add(value.text())
             }
-
-
-            var mid_time1 = doc.select(".dday")
+            for((i,value) in mid_img.withIndex()){
+                model!!.midimg.add(value.text())
+            }
+            model!!.subWetherImgLogic()
 
             model!!.address.set(address.text())
             model!!.temperature.set(temperature.text())
@@ -101,13 +106,14 @@ class MainActivity : BaseActivity() {
 
             model!!.midtemp.clear()
             model!!.midtime.clear()
+            model!!.midimg.clear()
 
             return textData
         }
 
         override fun onPostExecute(result: TextData?) {
             super.onPostExecute(result)
-           /* address.text= result!!.address
+            /*address.text= result!!.address
             temperature.text = result!!.temperature
             mainSub1.text = result!!.mainSub1
             mainSub2.text = result!!.mainSub2*/
