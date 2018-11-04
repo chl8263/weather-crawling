@@ -1,15 +1,23 @@
 package com.example.gyun_home.weather_crawling.viewModel
 
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import android.os.AsyncTask
+import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import com.example.gyun_home.weather_crawling.R
 import com.example.gyun_home.weather_crawling.model.TextData
+import com.example.gyun_home.weather_crawling.model.WeeklyItem
 import org.jsoup.Jsoup
 import java.util.*
 
-class MainViewModel {
+class MainViewModel : SwipeRefreshLayout.OnRefreshListener{
+
+    var weeklyList : ObservableArrayList<WeeklyItem> = ObservableArrayList()
+
+    var showLoading = ObservableBoolean(false)
 
     var midtemp: ArrayList<String> = ArrayList()
     var midtime: ArrayList<String> = ArrayList()
@@ -95,6 +103,8 @@ class MainViewModel {
 
     inner class getData : AsyncTask<Unit, Unit, TextData>(){
         override fun doInBackground(vararg p0: Unit?): TextData {
+            showLoading.set(true)
+
             var textData = TextData()
 
             var doc= Jsoup.connect("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%84%9C%EC%9A%B8+%EB%82%A0%EC%94%A8").get()
@@ -112,6 +122,20 @@ class MainViewModel {
             var mid_temp = doc.select(".weather_item")
             var mid_time = doc.select(".item_time")
             var mid_img = doc.select(".list_area").first().children()
+
+            var weekly = doc.select(".weekly").first().children()
+            var weekName = weekly.select(".day_info")
+            var weekuptext = weekly.select(".num")
+
+            for( (i,value) in weekName.withIndex()){
+                weeklyList.add(WeeklyItem(value.text(),null,null,null,null,null))
+            }
+
+
+
+            for( (i,value) in weekuptext.withIndex()){
+                Log.e("down Name ", value.text())
+            }
 
 
 
@@ -160,6 +184,8 @@ class MainViewModel {
             midtime.clear()
             midimg.clear()
 
+
+
             return textData
         }
 
@@ -169,8 +195,13 @@ class MainViewModel {
             temperature.text = result!!.temperature
             mainSub1.text = result!!.mainSub1
             mainSub2.text = result!!.mainSub2*/
+            showLoading.set(false)
         }
     }
+    override fun onRefresh() {
+        Log.e("aaaaaaa","wewewewewe")
+        getData().execute()
 
+    }
 
 }

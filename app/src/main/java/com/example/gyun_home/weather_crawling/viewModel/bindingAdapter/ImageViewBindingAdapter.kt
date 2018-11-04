@@ -1,4 +1,4 @@
-package com.example.gyun_home.weather_crawling.viewModel
+package com.example.gyun_home.weather_crawling.viewModel.bindingAdapter
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView
@@ -10,4 +10,6 @@ object ImageViewBindingAdapter {
     fun setImageView(view : ImageView , itemid : Int){
         view.setImageResource(itemid)
     }
+
+
 }
